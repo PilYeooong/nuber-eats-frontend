@@ -23,8 +23,11 @@ const ConfirmEmail = () => {
   const history = useHistory();
 
   const onCompleted = (data: verifyEmail) => {
-    const { verifyEmail: { ok } } = data;
-    if (ok && userData?.me.id) { // writing to cache, apollo cache modifying
+    const {
+      verifyEmail: { ok },
+    } = data;
+    if (ok && userData?.me.id) {
+      // writing to cache, apollo cache modifying
       client.writeFragment({
         id: `User:${userData?.me.id}`,
         fragment: gql`
@@ -34,7 +37,7 @@ const ConfirmEmail = () => {
         `,
         data: {
           verified: true,
-        }
+        },
       });
       history.push('/');
     }
@@ -44,7 +47,7 @@ const ConfirmEmail = () => {
     verifyEmail,
     verifyEmailVariables
   >(VERIFY_EMAIL_MUTATION, {
-    onCompleted
+    onCompleted,
   });
 
   // const location = useLocation();
@@ -54,16 +57,18 @@ const ConfirmEmail = () => {
     verifyEmail({
       variables: {
         input: {
-          code
-        }
-      }
+          code,
+        },
+      },
     });
   }, [verifyEmail]);
 
   return (
     <div className="mt-52 flex flex-col items-center justify-center">
       <h2 className="text-lg mb-2 font-medium">Confirming Email...</h2>
-      <h4 className="text-gray-700 text-sm">Please wait, don't close this page...</h4>
+      <h4 className="text-gray-700 text-sm">
+        Please wait, don't close this page...
+      </h4>
     </div>
   );
 };

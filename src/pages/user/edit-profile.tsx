@@ -3,7 +3,10 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Button } from '../../components/button';
 import { useMe } from '../../hooks/useMe';
-import { editProfile, editProfileVariables } from '../../__generated__/editProfile';
+import {
+  editProfile,
+  editProfileVariables,
+} from '../../__generated__/editProfile';
 
 const EDIT_PROFILE_MUTATION = gql`
   mutation editProfile($input: EditProfileInput!) {
@@ -22,20 +25,24 @@ interface IFormProps {
 const EditProfile = () => {
   const { data: userData } = useMe();
   const { register, handleSubmit, getValues, formState } = useForm<IFormProps>({
-    mode: "onChange",
+    mode: 'onChange',
     defaultValues: {
       email: userData?.me.email,
-    }
+    },
   });
 
   const onCompleted = (data: editProfile) => {
-    const { editProfile: { ok }} = data;
+    const {
+      editProfile: { ok },
+    } = data;
     if (ok) {
+    }
+  };
 
-    };
-  }
-
-  const [editProfile, { loading }] = useMutation<editProfile, editProfileVariables>(EDIT_PROFILE_MUTATION, { onCompleted });
+  const [editProfile, { loading }] = useMutation<
+    editProfile,
+    editProfileVariables
+  >(EDIT_PROFILE_MUTATION, { onCompleted });
 
   const onSubmit = () => {
     const { email, password } = getValues();
@@ -43,10 +50,10 @@ const EditProfile = () => {
       variables: {
         input: {
           email,
-          ...(password !== "" && { password })
-        }
-      }
-    })
+          ...(password !== '' && { password }),
+        },
+      },
+    });
   };
 
   return (
@@ -73,7 +80,11 @@ const EditProfile = () => {
           type="password"
           placeholder="Password"
         />
-        <Button loading={loading} canClick={formState.isValid} actionText={'Save Profile'} />
+        <Button
+          loading={loading}
+          canClick={formState.isValid}
+          actionText={'Save Profile'}
+        />
       </form>
     </div>
   );

@@ -9,7 +9,11 @@ const Header: React.FC = () => {
   const { data } = useMe();
   return (
     <>
-      {!data?.me.verified && <div className="bg-red-500 p-3 text-center text-xs text-white"><span>Please verify your email</span></div>}
+      {!data?.me.verified && (
+        <div className="bg-red-500 p-3 text-center text-xs text-white">
+          <span>Please verify your email</span>
+        </div>
+      )}
       <header className="py-4">
         <div className="w-full px-5 xl:px-0 max-w-screen-xl mx-auto flex justify-between items-center">
           <img src={nuberLogo} alt="" className="w-24" />
@@ -20,7 +24,7 @@ const Header: React.FC = () => {
           </span>
         </div>
       </header>
-  </>
+    </>
   );
 };
 
