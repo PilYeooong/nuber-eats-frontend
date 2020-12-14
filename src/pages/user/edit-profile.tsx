@@ -1,5 +1,6 @@
-import { gql, useMutation } from '@apollo/client';
+import { gql, useApolloClient, useMutation } from '@apollo/client';
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useForm } from 'react-hook-form';
 import { Button } from '../../components/button';
 import { useMe } from '../../hooks/useMe';
@@ -23,7 +24,8 @@ interface IFormProps {
 }
 
 const EditProfile = () => {
-  const { data: userData } = useMe();
+  const client = useApolloClient();
+  const { data: userData, refetch } = useMe();
   const { register, handleSubmit, getValues, formState } = useForm<IFormProps>({
     mode: 'onChange',
     defaultValues: {
@@ -35,7 +37,25 @@ const EditProfile = () => {
     const {
       editProfile: { ok },
     } = data;
-    if (ok) {
+    if (ok && userData) {
+      // await refetch();
+      const { me: { email: prevEmail, id }} = userData;
+      const { email: newEmail } = getValues();
+      if (prevEmail !== newEmail) {
+        client.writeFragment({
+          id: `User:${id}`,
+          fragment: gql`
+            fragment editedUser on User {
+              email,
+              verified
+            }
+          `,
+          data: {
+            email: newEmail,
+            verified: false,
+          },
+        });
+      }
     }
   };
 
@@ -58,6 +78,9 @@ const EditProfile = () => {
 
   return (
     <div className="mt-52 flex flex-col justify-center items-center">
+      <Helmet>
+        <title>Edit Profile | Nuber Eats</title>
+      </Helmet>
       <h4 className="font-semibold text-2xl mb-3">Edit Profile</h4>
       <form
         action=""
