@@ -1,13 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Restaurants from '../pages/client/restaurants';
-import Header from '../components/header';
+import { Restaurants } from '../pages/client/restaurants';
+import { Header } from '../components/header';
 import { useMe } from '../hooks/useMe';
 import { NotFound } from '../pages/404';
 import ConfirmEmail from '../pages/user/confirm-email';
 import EditProfile from '../pages/user/edit-profile';
 import Search from '../pages/client/search';
-import Category from '../pages/client/category';
+import { Category } from '../pages/client/category';
+import { Restaurant } from '../pages/client/restaurant';
 
 const ClientRoutes = [
     <Route key={1} exact path="/">
@@ -25,9 +26,12 @@ const ClientRoutes = [
     <Route key={5} exact path="/category/:slug">
       <Category />
     </Route>,
+    <Route key={6} exact path="/restaurant/:id">
+      <Restaurant />
+    </Route>,
 ];
 
-const LoggedInRouter = () => {
+export const LoggedInRouter = () => {
   const { data, loading, error } = useMe();
 
   if (!data || loading || error) {
@@ -50,5 +54,3 @@ const LoggedInRouter = () => {
     </Router>
   );
 };
-
-export default LoggedInRouter;

@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useForm } from 'react-hook-form';
 import { Link, useHistory } from 'react-router-dom';
-import Restaurant from '../../components/restaurant';
-import RestaurantList from '../../components/restaurant-list';
+import { Restaurant } from '../../components/restaurant';
+import { RestaurantList } from '../../components/restaurant-list';
 import { CATEGORY_FRAGMENT, RESTAURANT_FRAGMENT } from '../../fragments';
 import {
   restaurantsPageQuery,
@@ -38,7 +38,7 @@ interface IFormProps {
   searchTerm: string;
 }
 
-const Restaurants = () => {
+export const Restaurants = () => {
   const [page, setPage] = useState(1);
   const history = useHistory();
   const { data, loading, error } = useQuery<
@@ -145,5 +145,3 @@ const Restaurants = () => {
     </div>
   );
 };
-
-export default Restaurants;

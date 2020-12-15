@@ -29,7 +29,7 @@ interface ILoginForm {
   password: string;
 }
 
-const Login: React.FC = () => {
+export const Login: React.FC = () => {
   const {
     register,
     getValues,
@@ -137,5 +137,3 @@ const Login: React.FC = () => {
     </div>
   );
 };
-
-export default Login;

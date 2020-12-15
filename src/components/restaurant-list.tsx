@@ -1,7 +1,7 @@
 import React from 'react';
 import { category_category_restaurants } from '../__generated__/category';
 import { restaurantsPageQuery_restaurants_results } from '../__generated__/restaurantsPageQuery';
-import Restaurant from './restaurant';
+import { Restaurant } from './restaurant';
 
 interface IProps {
   restaurants: restaurantsPageQuery_restaurants_results[] | category_category_restaurants[] | null | undefined;
@@ -11,7 +11,7 @@ interface IProps {
   onNextPageClick: () => void;
 }
 
-const RestaurantList: React.FC<IProps> = ({
+export const RestaurantList: React.FC<IProps> = ({
   restaurants,
   page,
   totalPages,
@@ -59,5 +59,3 @@ const RestaurantList: React.FC<IProps> = ({
     </>
   );
 };
-
-export default RestaurantList;

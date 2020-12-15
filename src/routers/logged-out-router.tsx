@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { NotFound } from '../pages/404';
-import Login from '../pages/login';
-import Signup from '../pages/signup';
+import { Login } from '../pages/login';
+import { Signup } from '../pages/signup';
 
-const LoggedOutRouter = () => {
+export const LoggedOutRouter = () => {
   return (
     <Router>
       <Switch>
@@ -21,5 +21,3 @@ const LoggedOutRouter = () => {
     </Router>
   );
 };
-
-export default LoggedOutRouter;

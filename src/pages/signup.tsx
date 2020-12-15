@@ -28,7 +28,7 @@ interface ICreateAccountForm {
   role: UserRole;
 }
 
-const Signup: React.FC = () => {
+export const Signup: React.FC = () => {
   const history = useHistory();
   const {
     register,
@@ -151,5 +151,3 @@ const Signup: React.FC = () => {
     </div>
   );
 };
-
-export default Signup;

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useMe } from '../hooks/useMe';
 import nuberLogo from '../images/logo.svg';
 
-const Header: React.FC = () => {
+export const Header: React.FC = () => {
   const { data } = useMe();
   return (
     <>
@@ -29,5 +29,3 @@ const Header: React.FC = () => {
     </>
   );
 };
-
-export default Header;

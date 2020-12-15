@@ -1,7 +1,7 @@
 import { gql, useQuery } from '@apollo/client';
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import RestaurantList from '../../components/restaurant-list';
+import { RestaurantList } from '../../components/restaurant-list';
 import { CATEGORY_FRAGMENT, RESTAURANT_FRAGMENT } from '../../fragments';
 import { category, categoryVariables } from '../../__generated__/category';
 
@@ -28,7 +28,7 @@ interface ICategoryParams {
   slug: string;
 }
 
-const Category = () => {
+export const Category = () => {
   const [page, setPage] = useState(1);
   const onNextPageClick = () => setPage((current) => current + 1);
   const onPrevPageClick = () => setPage((current) => current - 1);
@@ -58,5 +58,3 @@ const Category = () => {
     ></RestaurantList>
   );
 };
-
-export default Category;
