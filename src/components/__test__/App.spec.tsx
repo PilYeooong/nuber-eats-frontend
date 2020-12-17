@@ -17,8 +17,9 @@ jest.mock('../../routers/logged-in-router', () => {
 
 describe('<App />', () => {
   it('renders LoggedOutRouter', () => {
-    const { debug, getByText } = render(<App />);
+    const { getByText } = render(<App />);
     getByText('loggedOut');
+    
   });
 
   it('renders LoggedInRouter', async () => {
