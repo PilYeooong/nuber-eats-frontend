@@ -18,10 +18,7 @@ describe('Log In', () => {
   });
 
   it('can fill out the form', () => {
-    user.visit('/');
-    user.findByPlaceholderText(/email/i).type('pilyeooong@gmail.com');
-    user.findByPlaceholderText(/password/i).type('123');
-    user.findByRole('button').should('not.have.class', 'pointer-events-none').click();
-    user.window().its('localStorage.nuber-token').should('be.a', 'string')
+    // @ts-ignore
+    user.login('pilyeooong@gmail.com', '123');
   });
 });
