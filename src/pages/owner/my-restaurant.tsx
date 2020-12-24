@@ -81,7 +81,7 @@ export const MyRestaurant = () => {
     }
   }, [subscriptionData]);
 
-  console.log(data);
+  console.log(subscriptionData);
   return (
     <div>
       <div
